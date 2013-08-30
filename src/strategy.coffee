@@ -44,7 +44,7 @@ class Strategy
       else
         if isClone
           lastToken = tokenNumber + minTokens - 2
-          @addClone(map, file, firstHash, firstToken, lastToken, firstLine, tokensPositions[lastToken])
+          @addClone(map, file, firstHash, firstToken, lastToken, firstLine, tokensPositions[lastToken], lines.length)
           firstLine = 0
           isClone = false
         @codeHashes[hash] = line: tokensPositions[tokenNumber], file: file
@@ -56,12 +56,12 @@ class Strategy
       @addClone(map, file, firstHash, firstToken, lastToken, firstLine, tokensPositions[lastToken])
       isClone = false
 
-  addClone: (map, file, hash, firstToken, lastToken, firstLine, lastLine) ->
+  addClone: (map, file, hash, firstToken, lastToken, firstLine, lastLine, numFileLines) ->
     fileA = @codeHashes[hash].file
     firstLineA = @codeHashes[hash].line
     numLines = lastLine + 1 - firstLine
     if numLines >= @minLines and (fileA isnt file or firstLineA isnt firstLine)
-      map.addClone new Clone(fileA, file, firstLineA, firstLine, numLines, lastToken - firstToken + 1)
+      map.addClone new Clone(fileA, file, firstLineA, firstLine, numLines, lastToken - firstToken + 1, numFileLines)
 
   getTokenTypeId: (name) ->
     result = 0

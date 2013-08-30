@@ -1,7 +1,7 @@
 shjs = require "shelljs"
 
 class Clone
-  constructor: (@firstFile, @secondFile, @firstFileStart, @secondFileStart, @linesCount, @tokensCount)->
+  constructor: (@firstFile, @secondFile, @firstFileStart, @secondFileStart, @linesCount, @tokensCount, @numFileLines)->
 
   getLines: ->
     code = shjs.cat(@firstFile)
