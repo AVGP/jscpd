@@ -53,7 +53,7 @@ class Strategy
 
     if isClone
       lastToken = tokenNumber + minTokens - 2
-      @addClone(map, file, firstHash, firstToken, lastToken, firstLine, tokensPositions[lastToken])
+      @addClone(map, file, firstHash, firstToken, lastToken, firstLine, tokensPositions[lastToken], lines.length)
       isClone = false
 
   addClone: (map, file, hash, firstToken, lastToken, firstLine, lastLine, numFileLines) ->
